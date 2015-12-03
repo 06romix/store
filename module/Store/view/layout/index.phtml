@@ -1,0 +1,59 @@
+<?php use Zend\Authentication\AuthenticationService; ?>
+<?php use Store\Entity\User; ?>
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle()->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath('css/storeStyle.css'))
+                        ->prependStylesheet($this->basePath('css/generalStyle.css'))
+                        ->prependStylesheet($this->basePath('css/storeStyle.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/storeScripts.js'))
+            ->prependFile($this->basePath('js/adminScripts.js'))
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery.min.js'))
+            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+    </head>
+    <body>
+        <div class="container">
+            <!-- top bar -->
+            <div class="top">
+                <div class="siteTitle"><h2><?=$this->headTitle()->rendertitle(); ?></h2></div>
+                <div class="auth">
+                    <?php
+                    $auth = new AuthenticationService();
+                    if ($auth->getIdentity()) {
+                        echo '<div class="login">';
+                            echo User::getUserLogin($auth->getIdentity());
+                        echo '</div>';
+                        echo '<div class="loginButton">';
+                            echo '<a href="http://store/auth/logout/">Вихід</a>';
+                        echo '</div>';
+                    } else {
+                        echo '<div class="loginButton">';
+                            echo '<a href="http://store/auth/">Ввійти</a> | <a href="http://store/auth/registration/">Реєстрація</a>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+            <?php echo $this->content; ?>
+        </div> <!-- /container -->
+    </body>
+</html>

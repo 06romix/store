@@ -1,0 +1,84 @@
+/* ------ admin panel ------ */
+.leftMenu {
+    margin: 5px;
+    min-width: 120px;
+    display: inline-block;
+    position: relative;
+    float: left;
+}
+
+.menuItem {
+    margin: 0;
+    padding: 5px;
+    height: 30px;
+    width: 100%;
+    display: block;
+}
+
+.menuItem a {
+    display: block;
+}
+
+.content {
+    width: 84%;
+    display: inline-block;
+}
+#admin ul, menu, dir {
+    display: block;
+    list-style-type: none;
+}
+
+#admin li {
+    padding-left: 5px;
+}
+
+.content table{
+    margin-top: 5px;
+    background: white;
+    border: 1px solid #dddddd;
+}
+
+.content td, th{
+    border: 1px solid #dddddd;
+    padding: 2px 5px;
+}
+
+#admin #addProduct {
+    height: 30px;
+    display: block;
+}
+
+#admin #addProduct a {
+    height: 30px;
+    line-height: 30px;
+}
+
+#admin .edit {
+    background: orange;
+    color: #eee;
+
+    line-height: 26px;
+    vertical-align: baseline;
+    padding: 1px 8px;
+    height: 30px;
+    margin: 0;
+    display: inline-block;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+}
+
+#admin .delete {
+    background: #E62117;
+    color: #eee;
+
+    line-height: 26px;
+    vertical-align: baseline;
+    padding: 1px 8px;
+    height: 30px;
+    margin: 0;
+    display: inline-block;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+}
+
+/* ------ end admin panel ------ */

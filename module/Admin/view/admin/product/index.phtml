@@ -1,0 +1,44 @@
+<?php $this->headTitle('Продукти'); ?>
+  <div id="admin" class="content">
+    <div id="addProduct">
+      <a href="/admin/product/add/">+ Додати продукт</a>
+    </div>
+
+    <?php
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+      </button>
+    <ul><li>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+    echo $flash->render('error', array('array', 'alert-dismissable', 'alert-danger'));
+    echo $flash->render('info', array('array', 'alert-dismissable', 'alert-info'));
+    echo $flash->render('default', array('array', 'alert-dismissable', 'alert-warning'));
+    echo $flash->render('success', array('array', 'alert-dismissable', 'alert-success'));
+    ?>
+    <table>
+      <tr>
+        <th>Назва товару</th>
+        <th>Ціна</th>
+        <th>Кількість на складі</th>
+        <th></th>
+      </tr>
+    <?php
+    foreach ($this->products AS $product)
+    {
+      echo '<tr id="' . $product['product_id'] . '">';
+      echo '<td>' . $product['product_name'] . '</td>';
+      echo '<td>' . $product['product_price'] . '</td>';
+      echo '<td>' . $product['product_quantity'] . '</td>';
+      echo '<td><a href="/admin/product/edit/' . $product['product_id'] . '/" class="edit">Edit</a>';
+      $option = $product['product_id'] . ", '" . $product['product_name'] . "'";
+      echo ' <button class="delete" onclick="deleteProduct(' . $option . ')">';
+      echo 'Delete';
+      echo '</button></td></td>';
+    }
+    ?>
+    </table>
+  </div>

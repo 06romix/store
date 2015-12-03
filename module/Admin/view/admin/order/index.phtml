@@ -1,0 +1,22 @@
+<?php $this->headTitle('Замовлення'); ?>
+<div id="admin" class="content">
+  <table>
+    <tr>
+      <th>Детальна інформація</th>
+      <th>Номер замовлення</th>
+      <th>Замовник</th>
+      <th>Назва товару</th>
+    </tr>
+    <?php
+    foreach ($this->orders AS $order)
+    {
+      echo '<tr>';
+      echo '<td><a href="/admin/order/view/' . $order['order_id'] . '/">Переглянути</a></td>';
+      echo '<td>' . $order['order_id'] . '</td>';
+      echo '<td>' . $order['user_name'] . '</td>';
+      echo '<td>' . $order['product_name'] . '</td>';
+      echo '</td>';
+    }
+    ?>
+  </table>
+</div>

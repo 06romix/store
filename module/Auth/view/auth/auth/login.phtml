@@ -1,0 +1,22 @@
+<?php $this->headTitle('Authorization'); ?>
+<div class="row">
+  <div class="cols col-4">
+<?php
+$form->setAttribute('action', $this->url('auth', array('action' => 'login')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+  foreach ($form as $element){
+  echo '<div class="formGroup">';
+
+    echo '<div class="col-10">';
+      echo $this->formRow($element);
+    echo '</div>';
+  echo '</div>';
+  }
+  echo '</filedset>';
+echo $this->form()->closeTag();
+?>
+  </div>
+</div>

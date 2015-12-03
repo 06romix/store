@@ -1,0 +1,163 @@
+.filtersLine {
+    margin: 2px 0 10px;
+    padding: 3px 1.5em;
+    background-color: #fefefe;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    width: 100%;
+    border-radius: 0;
+    text-align: right;
+}
+
+.filtersLine select {
+    border-top: none;
+    border-right: 1px solid grey;
+    border-bottom: none;
+    border-left: 1px solid grey;
+    background: none;
+}
+
+.filtersLine label {
+    font-weight: normal;
+    margin: 0;
+}
+
+.goBack {
+    position: absolute;
+    left: 1.5em;
+    display: inline-block;
+}
+
+.pageNavigation {
+    left: 1.5em;
+    display: inline-block;
+    position: absolute;
+}
+
+.pageNavigation a {
+    text-decoration: none;
+}
+
+.sort {
+    display: inline-block;
+    position: inherit;
+}
+
+.pagination {
+    margin: 0 0 0 1.5em;
+    display: inline-block;
+}
+
+.product {
+    margin: 0;
+    padding: 0.5em 1em;
+    background-color: white;
+    border: 1px solid #dddddd;
+    color: grey;
+    height: 85px;
+}
+
+.showProduct {
+    margin: 0;
+    padding: 0.5em 1em;
+    background-color: white;
+    border: 1px solid #dddddd;
+    color: #222;
+    min-width: 400px;
+}
+
+.showProduct h5 {
+    color: black;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.showProduct hr {
+    margin: 0.4em 0 0.1em 0;
+}
+
+.product:hover {
+    background-color: #fcfcfc;
+}
+
+.product h5 {
+    color: black;
+    font-weight: 500;
+}
+
+.data {
+    margin: 0;
+    font-size: 12px;
+    color: #777;
+}
+
+.data span {
+    font-family: monospace;
+}
+
+.price {
+    margin: 0.9em 0;
+}
+
+.inStoke {
+    color: #48a019;
+}
+
+.price {
+    color: #E62117;
+    font-weight: 500;
+}
+
+.description {
+    display: block;
+    color: #555;
+    font-weight: 500;
+    margin: 0.2em 0;
+}
+
+
+.orderForm {
+    text-align: right;
+}
+
+.orderQuantity {
+    margin-right: 0.6em;
+    display: inline-block;
+}
+
+.orderQuantity label {
+    font-weight: 500;
+}
+
+.orderQuantity input{
+    margin: 0 0.1em;
+    width: 50px;
+}
+
+.purchaseButton {
+    text-align: right;
+    color: black;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.purchaseButton input[type=submit] {
+    width: auto;
+    margin: 0 1px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 0.1em 0.8em;
+    border: 1px solid #5fbd33;
+    border-radius: 3px;
+    background-color: #5fbd33;
+}
+
+@media screen and (max-width: 550px)
+{
+    .pageNavigation {
+        width: 100%;
+        position: inherit;
+        text-align: center;
+    }
+}

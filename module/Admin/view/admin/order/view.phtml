@@ -1,0 +1,21 @@
+<?php $this->headTitle('Замовлення'); ?>
+<div id="admin" class="content">
+  <table>
+    <tr>
+      <td>Товар</td>
+      <td><a href="/show/<?=$this->order['product_id']?>/"><?=$this->order['product_name']?></a></td>
+    </tr>
+    <tr>
+      <td>Кількість</td>
+      <td><?=$this->order['order_quantity']?></td>
+    </tr>
+    <tr>
+      <td>Дата замовлення</td>
+      <td><?=$this->order['order_date']?></td>
+    </tr>
+    <tr>
+      <td>Замовник</td>
+      <td><a href="/admin/user/view/<?=$this->order['user_id']?>/"><?=$this->order['user_name']?></a></td>
+    </tr>
+  </table>
+</div>

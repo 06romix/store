@@ -1,0 +1,21 @@
+<?php $this->headTitle('Користувачі'); ?>
+<div id="admin" class="content">
+  <table>
+    <tr>
+      <td>Ім'я</td>
+      <td><?=$this->user['user_name']?></td>
+    </tr>
+    <tr>
+      <td>E-mail</td>
+      <td><?=$this->user['user_email']?></td>
+    </tr>
+    <tr>
+      <td>Мобільний телефон</td>
+      <td><?=$this->user['user_tel']?></td>
+    </tr>
+    <tr>
+      <td>IP-адрес</td>
+      <td><?=$this->user['user_ip']?></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,70 @@
+<?php $this->headTitle('ROMIX SHOP'); ?>
+
+<div class="row">
+  <div class="filtersLine">
+
+    <div class="sort">
+      <label for="sort">Sort by</label>
+      <select id="sort" onchange="selectSort()">
+        <option value="default"></option>
+        <option <?=($this->sort == 'product_name') ? 'selected' :'';?> value="product_name">Name</option>
+        <option <?=($this->sort == 'product_price') ? 'selected' :'';?> value="product_price">Price</option>
+      </select>
+    </div>
+
+    <div class="pagination" onchange="selectPagination()">
+      <label for="pagination">Pagination</label>
+      <select id="pagination">
+        <option <?=($this->limit == 1) ? 'selected' :'';?> value="1">1</option>
+        <option <?=($this->limit == 5) ? 'selected' :'';?> value="5" >5</option>
+        <option <?=($this->limit == 10) ? 'selected' :'';?> value="10">10</option>
+        <option <?=($this->limit == 25) ? 'selected' :'';?> value="25">25</option>
+      </select>
+    </div>
+
+    <?php if($this->navigation) {
+      echo '<div class="pageNavigation">';
+      echo ($this->currentPage == 1) ? '<-- ' : '<a href="/index/' . ($this->currentPage - 1) . '/"><-- </a>';
+      $page = 1;
+      while ($this->pageCount >= $page){
+        if ($page == $this->currentPage){
+          echo $page;
+        } else {
+          echo ' <a href="/index/' . $page . '/">' . $page . '</a> ';
+        }
+        $page++;
+      }
+      echo ($this->currentPage == $this->pageCount) ? ' -->' : '<a href="/index/' . ($this->currentPage + 1) . '/"> --></a>';
+      echo '</div>';
+    }?>
+
+  </div>
+</div>
+
+<div class="row">
+  <?php if($this->userRole == 'guest') : ?>
+
+    <?php foreach($this->products AS $product):?>
+      <div class="cols col-3">
+        <div class="product">
+          <h5><?=$product['product_name'];?></h5>
+          Price: <span class="price">$<?=$product['product_price'];?></span>
+        </div>
+      </div>
+    <?php endforeach;?>
+
+    <?php else:?>
+
+    <?php foreach($this->products AS $product):?>
+      <div class="cols col-3">
+        <div class="product">
+          <a href="/show/<?=$product['product_id']?>/">
+            <h5><?=$product['product_name'];?></h5>
+          </a>
+          Price: <span class="price">$<?=$product['product_price'];?></span>
+        </div>
+      </div>
+    <?php endforeach;?>
+
+  <?php endif;?>
+</div>

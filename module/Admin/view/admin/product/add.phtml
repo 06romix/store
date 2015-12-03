@@ -1,0 +1,42 @@
+<?php
+
+$form->setAttribute('action', $this->url('admin/product', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+  echo '<fieldset><legend>Додати продукт</legend>';
+  foreach ($form as $element){
+    echo '<div class="formGroup">';
+    $attributes = $element->getAttributes();
+
+    if ($element->getLabel()){
+      $element->setLabelAttributes(array('class' => 'col-2 formLabel'));
+      if(isset($attributes['required'])){
+        $element->setLabel($element->getLabel() . ' *');
+      }
+    }
+
+    if (isset($attributes['type']) && $attributes['type'] == 'text')
+    {
+      echo $this->formLabel($element);
+      echo '<div class="col-10">';
+        echo $this->formInput($element);
+      echo '</div>';
+    }
+    elseif (isset($attributes['type']) && $attributes['type'] == 'textarea')
+    {
+      echo $this->formLabel($element);
+      echo '<div class="col-10">';
+        echo $this->formTextArea($element);
+      echo '</div>';
+    }
+    else
+    {
+      echo '<div class="col-10">';
+        echo $this->formRow($element);
+      echo '</div>';
+    }
+    echo '</div>';
+  }
+echo '</filedset>';
+echo $this->form()->closeTag();

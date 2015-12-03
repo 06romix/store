@@ -1,0 +1,19 @@
+<?php $this->headTitle('Користувачі'); ?>
+<div id="admin" class="content">
+  <table>
+    <tr>
+      <th>Детальна інформація</th>
+      <th>Ім'я</th>
+      <th>E-mail</th>
+    </tr>
+    <?php
+    foreach ($this->users AS $user)
+    {
+      echo '<tr><td><a href="view/' . $user['user_id'] . '/">Переглянути</a></td>';
+      echo '<td>' . $user['user_name'] . '</td>';
+      echo '<td>' . $user['user_email'] . '</td>';
+      echo '</tr>';
+    }
+    ?>
+  </table>
+</div>
