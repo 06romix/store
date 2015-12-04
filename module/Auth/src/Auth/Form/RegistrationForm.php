@@ -12,6 +12,7 @@ class RegistrationForm extends Form
     parent::__construct('registrationForm');
     $this->setAttribute('method', 'post');
     $this->setAttribute('class', 'form-horizontal');
+    $this->setAttribute('id', 'formR');
 
 //    $this->setInputFilter(new ProductAddInputFilter());
 
@@ -19,8 +20,6 @@ class RegistrationForm extends Form
       'name' => 'name',
       'type' => 'Text',
       'options' => array(
-        'min' => 2,
-        'max' => 100,
         'label' => 'Login',
       ),
       'attributes' => array(
@@ -33,8 +32,6 @@ class RegistrationForm extends Form
       'name' => 'email',
       'type' => 'Text',
       'options' => array(
-        'min' => 3,
-        'max' => 500,
         'label' => 'E-mail',
       ),
       'attributes' => array(
@@ -47,9 +44,32 @@ class RegistrationForm extends Form
       'name' => 'tel',
       'type' => 'Text',
       'options' => array(
-        'min' => 1,
-        'max' => 10,
-        'label' => 'Телефон',
+        'label' => 'Номер мобільного тел.',
+      ),
+      'attributes' => array(
+        'class' => 'form-control',
+        'required' => 'required',
+      ),
+    ));
+
+    $this->add(array(
+      'name' => 'pass',
+      'type' => 'password',
+      'options' => array(
+        'label' => 'Пароль',
+      ),
+      'attributes' => array(
+        'class' => 'form-control',
+        'required' => 'required',
+        'id' => 'password',
+      ),
+    ));
+
+    $this->add(array(
+      'name' => 'rePass',
+      'type' => 'password',
+      'options' => array(
+        'label' => 'Повторіть пароль',
       ),
       'attributes' => array(
         'class' => 'form-control',
@@ -61,7 +81,7 @@ class RegistrationForm extends Form
       'name' => 'submit',
       'type' => 'submit',
       'attributes' => array(
-        'value' => 'Зберегти',
+        'value' => 'Реєстрація',
         'id' => 'btmSubmit',
         'class' => 'btn btnSubmit',
       ),

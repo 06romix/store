@@ -6,7 +6,7 @@
     <div class="sort">
       <label for="sort">Sort by</label>
       <select id="sort" onchange="selectSort()">
-        <option value="default"></option>
+        <option value="product_id"></option>
         <option <?=($this->sort == 'product_name') ? 'selected' :'';?> value="product_name">Name</option>
         <option <?=($this->sort == 'product_price') ? 'selected' :'';?> value="product_price">Price</option>
       </select>
@@ -40,6 +40,22 @@
 
   </div>
 </div>
+
+<?php
+//messenger
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <ul><li>')
+  ->setMessageSeparatorString('</li><li>')
+  ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error', array('array', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info', array('array', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default', array('array', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success', array('array', 'alert-dismissable', 'alert-success'));
+//messenger
+?>
 
 <div class="row">
   <?php if($this->userRole == 'guest') : ?>

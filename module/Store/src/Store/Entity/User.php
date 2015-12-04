@@ -31,7 +31,6 @@ class User
   private function findUserIp()
   {
     $this->ip = $_SERVER['REMOTE_ADDR'];
-    // getenv(HTTP_X_FORWARDED_FOR); // if user use proxy server
   }
 
   public function dbToUser($data)
@@ -55,8 +54,31 @@ class User
     if($result == false){
       return array('status' => false);
     }
-    //fill Object
-//    $this->dbToUser($result);
     return array('status' => true, 'data' => $result);
+  }
+
+  public function addUser()
+  {
+    $this->findUserIp();
+    $this->role = 'user';
+
+    $setField = "'"
+      . $this->name . "', '"
+      . md5($this->pass) . "', '"
+      . $this->email . "', '"
+      . $this->tel . "', '"
+      . $this->ip . "', '"
+      . $this->role . "'";
+
+    DbFunctions::insertEntity('user', $setField);
+  }
+
+  public function exchangeArray($data)
+  {
+    foreach ($data AS $key => $val){
+      if (property_exists($this, $key)){
+        $this->$key = ($val !== null) ? $val : null;
+      }
+    }
   }
 }

@@ -1,14 +1,12 @@
 <?php
 namespace Admin\Form;
 
-use Zend\Form\Form;
-
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilter;
 
 
-class MyFilter implements  InputFilterAwareInterface
+class MyProductFilter implements  InputFilterAwareInterface
 {
 
   private $inputFilter;
@@ -16,11 +14,6 @@ class MyFilter implements  InputFilterAwareInterface
   public function setInputFilter(InputFilterInterface $inputFilter)
   {
     throw new \Exception("Not used");
-  }
-
-  public function test()
-  {
-    return 1;
   }
 
   /**
@@ -44,9 +37,8 @@ class MyFilter implements  InputFilterAwareInterface
           array(
             'name'    => 'StringLength',
             'options' => array(
-              'encoding' => 'UTF-8',
               'min'      => 1,
-              'max'      => 3,
+              'max'      => 100,
             ),
           ),
         ),
@@ -58,14 +50,6 @@ class MyFilter implements  InputFilterAwareInterface
         'filters'  => array(
           array('name' => 'StripTags'),
           array('name' => 'StringTrim'),
-        ),
-        'validators' => array(
-          array(
-            'name'    => 'StringLength',
-            'options' => array(
-              'encoding' => 'UTF-8',
-            ),
-          ),
         ),
       ));
 
@@ -80,10 +64,12 @@ class MyFilter implements  InputFilterAwareInterface
           array(
             'name'    => 'StringLength',
             'options' => array(
-              'encoding' => 'UTF-8',
               'min'      => 1,
               'max'      => 10,
             ),
+          ),
+          array(
+            'name' => 'Digits',
           ),
         ),
       ));
@@ -99,10 +85,12 @@ class MyFilter implements  InputFilterAwareInterface
           array(
             'name'    => 'StringLength',
             'options' => array(
-              'encoding' => 'UTF-8',
               'min'      => 1,
-              'max'      => 10,
+              'max'      => 11,
             ),
+          ),
+          array(
+            'name' => 'Digits',
           ),
         ),
       ));

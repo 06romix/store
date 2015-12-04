@@ -4,6 +4,7 @@ function deleteProduct(id, name)
 {
   if(confirm('Видалити продукт: ' + name)){
     $.post('delete/' + id + '/', {}, function(jsonData){
+      console.log(jsonData);
       var data = $.parseJSON(jsonData);
       if (data.status == 'success') removeEntity(id);
       showMessage(data);
@@ -33,7 +34,9 @@ function showMessage(data)
 
 function removeEntity(id)
 {
+  console.log('remove');
   $('#' + id).hide(300, function(){
-    this.remove()
+    this.remove();
+    console.log('hide');
   });
 }

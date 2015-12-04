@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 
-use Admin\Form\MyFilter;
+use Admin\Form\MyProductFilter;
 use Store\Db\MyDbAdapter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -31,7 +31,7 @@ class ProductController extends AbstractActionController
     if ($request->isPost()){
 
       $form->setData($request->getPost());
-      $filter = new MyFilter();
+      $filter = new MyProductFilter();
       $form->setInputFilter($filter->getInputFilter());
       if ($form->isValid()){
 
@@ -44,7 +44,6 @@ class ProductController extends AbstractActionController
         $message = 'Продукт добавлений';
 
       } else {
-        $form->
         $status = 'error';
         $message = 'Помилка параметрів';
       }

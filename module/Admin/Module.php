@@ -56,16 +56,23 @@ class Module
     $matches    = $e->getRouteMatch();
     $action = $matches->getParam('action');
     $controller = $matches->getParam('controller');
-//    var_dump($action,__NAMESPACE__);
-    if (in_array($controller, array('product', 'user', 'order', 'Admin\Controller\Index'), 0)){
-      // Set the layout template
-      $viewModel = $e->getViewModel();
-      $viewModel->setTemplate('layout/layout');
-    }
+
     // Blank page for JS in delete action
     if (0 === strpos($action, 'delete', 0)) {
       $viewModel = $e->getViewModel();
       $viewModel->setTemplate('layout/blank');
+      return;
+    }
+    if (in_array($controller, array('product', 'user', 'order', 'Admin\Controller\Index'), 0)){
+      // Set the layout template
+      $viewModel = $e->getViewModel();
+      $viewModel->setTemplate('layout/layout');
+      return;
+    }
+    if (in_array($action, array('login', 'registration'), 0)){
+      // Set the layout template
+      $viewModel = $e->getViewModel();
+      $viewModel->setTemplate('layout/auth');
       return;
     }
   }
