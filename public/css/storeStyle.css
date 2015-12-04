@@ -63,7 +63,8 @@
     background-color: white;
     border: 1px solid #dddddd;
     color: #222;
-    min-width: 400px;
+    min-width: 500px;
+    position: relative;
 }
 
 .showProduct h5 {
@@ -104,8 +105,11 @@
 }
 
 .price {
-    color: #E62117;
     font-weight: 500;
+}
+
+.price span {
+    color: #E62117;
 }
 
 .description {
@@ -129,9 +133,20 @@
     font-weight: 500;
 }
 
+label[generated=true] {
+    position: absolute;
+    left: 1em;
+    margin: 0;
+}
+
+.error {
+    color: #b92c28;
+}
+
 .orderQuantity input{
     margin: 0 0.1em;
-    width: 50px;
+    width: 40px;
+    text-align: center;
 }
 
 .purchaseButton {

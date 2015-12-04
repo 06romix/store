@@ -2,8 +2,6 @@
 namespace Store\Form;
 
 use Zend\Form\Form;
-//use Zend\InputFilter\Factory as InputFactory;
-//use Zend\InputFilter\InputFilter;
 
 class OrderForm extends Form
 {
@@ -12,8 +10,7 @@ class OrderForm extends Form
     parent::__construct('orderForm');
     $this->setAttribute('method', 'post');
     $this->setAttribute('class', 'orderForm');
-
-//    $this->setInputFilter(new ProductAddInputFilter());
+    $this->setAttribute('id', 'orderForm');
 
     $this->add(array(
       'name' => 'quantity',
@@ -23,6 +20,7 @@ class OrderForm extends Form
       ),
       'attributes' => array(
         'required' => 'required',
+        'value' => 1
       ),
     ));
 

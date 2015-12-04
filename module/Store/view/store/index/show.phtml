@@ -59,7 +59,7 @@ echo $flash->render('success', array('array', 'alert-dismissable', 'alert-succes
         <hr>
         <div class="data">Created: <span><?=$this->product['product_created_date'];?></span></div>
         <div class="price">Price: <span>$<?=$this->product['product_price'];?></span></div>
-        <span class="inStoke">In Stoke: <?=$this->product['product_quantity'];?></span><br>
+        <span class="inStoke">In Stoke: <span id="stoke"><?=$this->product['product_quantity'];?></span></span><br>
         <span class="description"><?=$this->product['product_description']?></span>
           <?php
           echo $this->form()->openTag($form);
