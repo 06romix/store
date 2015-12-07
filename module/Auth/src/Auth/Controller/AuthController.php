@@ -39,16 +39,14 @@ class AuthController extends AbstractActionController
         if ($result->isValid()){
           return $this->redirect()->toRoute('store');
         } else {
-          $status = 'error';
+         $status = 'error';
           $message = 'Невірний логін або пароль';
+            $this->flashMessenger()
+              ->setNamespace($status)
+              ->addMessage($message);
+          return $this->redirect()->refresh();
         }
       }
-    }
-
-    if ($message){
-      $this->flashMessenger()
-        ->setNamespace($status)
-        ->addMessage($message);
     }
     return array('form' => $form);
   }
