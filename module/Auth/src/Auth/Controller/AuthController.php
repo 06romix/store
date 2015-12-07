@@ -19,6 +19,7 @@ class AuthController extends AbstractActionController
   {
     $form = new AuthForm;
     $auth = new AuthenticationService();
+    $status = $message = '';
 
     if ($auth->hasIdentity()) {
       // Identity exists
@@ -38,9 +39,16 @@ class AuthController extends AbstractActionController
         if ($result->isValid()){
           return $this->redirect()->toRoute('store');
         } else {
-          echo 'error';
+          $status = 'error';
+          $message = 'Невірний логін або пароль';
         }
       }
+    }
+
+    if ($message){
+      $this->flashMessenger()
+        ->setNamespace($status)
+        ->addMessage($message);
     }
     return array('form' => $form);
   }
