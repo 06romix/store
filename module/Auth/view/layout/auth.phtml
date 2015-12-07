@@ -1,4 +1,6 @@
-<?php echo $this->doctype(); ?>
+<?php
+use Zend\Authentication\AuthenticationService;
+echo $this->doctype(); ?>
 
 <html lang="en">
     <head>
@@ -34,7 +36,12 @@
         <div class="container">
             <!-- top bar -->
             <div class="top">
-                <h2><?=$this->headTitle()->renderTitle();?></h2>
+                <div class="siteTitle"><h2><?=$this->headTitle()->renderTitle();?></h2></div>
+                <div class="auth"><div class="loginButton">
+                        <?=($this->headTitle()->renderTitle() == 'Реєстрація')
+                          ? '<a href="/auth/login/">Ввійти</a>'
+                          : '<a href="/auth/registration/">Реєстрація</a>'?>
+                    </div></div>
             </div>
             <!-- left menu -->
             <?php echo $this->content; ?>

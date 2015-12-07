@@ -44,11 +44,11 @@
                             echo User::getUserLogin($auth->getIdentity());
                         echo '</div>';
                         echo '<div class="loginButton">';
-                            echo '<a href="http://store/auth/logout/">Вихід</a>';
+                            echo '<a href="/auth/logout/">Вихід</a>';
                         echo '</div>';
                     } else {
                         echo '<div class="loginButton">';
-                            echo '<a href="http://store/auth/">Ввійти</a> | <a href="http://store/auth/registration/">Реєстрація</a>';
+                            echo '<a href="/auth/login/">Ввійти</a> | <a href="/auth/registration/">Реєстрація</a>';
                         echo '</div>';
                     }
                     ?>
