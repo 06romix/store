@@ -12,14 +12,30 @@ class Product
   private $quantity;
   private $createdDate;
 
-  function __construct()
-  {
-    $this->createdDate = date('Y-m-d H:i:s');
-  }
 
   public static function getAll()
   {
     return DbFunctions::getEntity('product');
+  }
+
+  public static function getProduct($id = 0)
+  {
+
+    if ($id) {
+      $count = 1;
+      $sql = "SELECT * FROM products
+              LEFT JOIN products_description
+              ON product_id = description_id
+              WHERE product_id = " . $id . " AND product_status = 1";
+
+    } else {
+      $count = 0;
+      $sql = "SELECT * FROM products
+                      LEFT JOIN products_description
+                      ON product_id = description_id
+                      WHERE product_status = 1";
+    }
+    return DbFunctions::sql($sql, $count);
   }
 
   /**
@@ -98,15 +114,23 @@ class Product
    * @return mixed
    */
 
+  /**
+   * @return mixed
+   */
+
   public function save()
   {
-    $setField = "'"
-              . $this->name . "', '"
-              . $this->description . "', "
-              . $this->price . ", "
-              . $this->quantity . ", '"
-              . $this->createdDate . "'";
-    return DbFunctions::insertEntity('product', $setField);
+    $productSQL = "'" . $this->name . "'";
+    DbFunctions::insert("INSERT INTO products (product_name)  VALUES (" . $productSQL . ")");
+
+    $this->id = DbFunctions::sql("SELECT product_id FROM products
+                                  WHERE product_name = '" . $this->name . "'
+                                  ORDER BY product_id DESC", 1)['product_id'];
+    $descriptionSQL = $this->id . ", '"
+      . $this->description . "', "
+      . $this->price . ", "
+      . $this->quantity . ", NULL";
+    DbFunctions::insert("INSERT INTO products_description VALUES (" . $descriptionSQL . ")");
   }
 
   /**

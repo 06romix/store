@@ -8,15 +8,40 @@ class DbFunctions
 {
   /**
    * @param $sql
+   * @param $countReturn
    * @return array
    */
 
-  public static function sql($sql)
+  public static function sql($sql, $countReturn = 0)
   {
     $Adapter = MyDbAdapter::getDbAdapter();
-    $a = iterator_to_array($Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE));
-    return $a;
+    return ($countReturn !== 1)
+            ? iterator_to_array($Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE))
+            : $Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE)->current();
   }
+
+  public static function insert($sql, $countReturn = 0)
+  {
+    $Adapter = MyDbAdapter::getDbAdapter();
+    $Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE);
+  }
+
+//  /**
+//   * @param int $id
+//   * @return array
+//   */
+//
+//  public static function getUser($id = 0)
+//  {
+//    $Adapter = MyDbAdapter::getDbAdapter();
+//    $sql = 'SELECT * FROM users';
+//
+//    if ($id !== 0) {
+//      $sql = 'SELECT * FROM users WHERE user_id = ' . $id;
+//      return $Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE)->current();
+//    }
+//    return iterator_to_array($Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE));
+//  }
 
   /**
    * @param $entity String

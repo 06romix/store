@@ -17,7 +17,7 @@ class ProductController extends AbstractActionController
 
   public function indexAction()
   {
-    return new ViewModel(array('products' => DbFunctions::getEntity('product')));
+    return new ViewModel(array('products' => Product::getProduct()));
   }
 
   public function addAction()
@@ -74,7 +74,8 @@ class ProductController extends AbstractActionController
     $db = new DbFunctions();
 
     //get product data
-    $data = $db->getEntity('product', $id);
+    $data = Product::getProduct($id);
+//    $data = $db->getEntity('product', $id);
     //if find 0 go product list
     if (empty($data)){
       $status = 'error';
