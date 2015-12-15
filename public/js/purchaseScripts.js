@@ -25,6 +25,22 @@ function addProductToBasket(id)
   });
 }
 
+function deleteProductFromBasket(id, qua)
+{
+  if (getCookie('basket[' + id + ']') == undefined) return false;
+  var product = JSON.parse(getCookie('basket[' + id + ']'));
+  if (+qua < +product.quantity) {
+    setCookie('basket[' + id + ']', JSON.stringify({id: id, quantity: +product.quantity - +qua}), {path: '/'});
+    return true;
+  } else {
+    if (+qua == +product.quantity) {
+      deleteCookie('basket[' + id + ']');
+      return true;
+    }
+    return false;
+  }
+}
+
 function updateBasket(quantity)
 {
   var span = $('.count');
