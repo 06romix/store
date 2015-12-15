@@ -50,6 +50,11 @@ use Store\Basket\ShopBasket;
                         echo '<div class="login">';
                             echo User::getUserLogin($auth->getIdentity());
                         echo '</div>';
+                        if (User::getUserRole($auth->getIdentity()) == 'admin') {
+                            echo '<div class="loginButton">';
+                            echo '<a href="/admin/">Admin-panel</a>';
+                            echo '</div>';
+                        }
                         echo '<div class="loginButton">';
                             echo '<a href="/auth/logout/">Вихід</a>';
                         echo '</div>';
