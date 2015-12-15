@@ -23,15 +23,5 @@ class OrderForm extends Form
         'value' => 1
       ),
     ));
-
-    $this->add(array(
-      'name' => 'submit',
-      'type' => 'submit',
-      'attributes' => array(
-        'value' => 'Замовити',
-        'id' => 'btmSubmit',
-        'class' => 'purchaseButton',
-      ),
-    ));
   }
 }

@@ -18,7 +18,7 @@ class Product
     return DbFunctions::getEntity('product');
   }
 
-  public static function getProduct($id = 0)
+  public static function getProduct($id = 0, $order = null, $limit = null)
   {
 
     if ($id) {
@@ -35,6 +35,10 @@ class Product
                       ON product_id = description_id
                       WHERE product_status = 1";
     }
+    if ($order !== null) $sql .= ' ORDER BY `' . $order . '`';
+    if ($limit !== null) $sql .= (is_array($limit))
+      ? ' LIMIT ' . (int) $limit['from'] . ', ' . (int) $limit['end']
+      : ' LIMIT ' . (int) $limit;
     return DbFunctions::sql($sql, $count);
   }
 
@@ -47,6 +51,7 @@ class Product
 
   public static function getAllByField($fields, $sortBy = null, $limit = null)
   {
+
     return DbFunctions::getFieldEntity('product', $fields, null, $sortBy, $limit);
   }
 
@@ -67,7 +72,7 @@ class Product
       $pageLimit['from'] = $limit * ($page - 1);
       $pageLimit['end'] = $limit * $page - $limit;
     }
-    return DbFunctions::getFieldEntity('product', $fields, null, $sortBy, $pageLimit);
+    return self::getProduct(0, $sortBy, $pageLimit);
   }
 
   /**
@@ -82,7 +87,8 @@ class Product
 
   public static function getCount()
   {
-    return DbFunctions::getEntityCount('product')['COUNT(*)'];
+    $where = ' WHERE product_status = 1';
+    return DbFunctions::getEntityCount('product', $where)['COUNT(*)'];
   }
 
   public function dbToProduct($data)

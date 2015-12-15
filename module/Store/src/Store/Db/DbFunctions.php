@@ -63,13 +63,18 @@ class DbFunctions
 
   /**
    * @param $entity
+   * @param $where
    * @return array|\ArrayObject|null
    */
 
-  public static function getEntityCount($entity)
+  public static function getEntityCount($entity, $where = '')
   {
     $Adapter = MyDbAdapter::getDbAdapter();
-    $sql = 'SELECT COUNT(*) FROM ' . $entity . 's';
+    if ($where == '') {
+      $sql = 'SELECT COUNT(*) FROM ' . $entity . 's';
+    } else {
+      $sql = 'SELECT COUNT(*) FROM ' . $entity . 's' . $where;
+    }
     return $Adapter->query($sql, $Adapter::QUERY_MODE_EXECUTE)->current();
   }
 

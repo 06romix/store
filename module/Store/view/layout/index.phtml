@@ -1,5 +1,9 @@
-<?php use Zend\Authentication\AuthenticationService; ?>
-<?php use Store\Entity\User; ?>
+<?php
+use Zend\Authentication\AuthenticationService;
+use Store\Entity\User;
+use Store\Basket\ShopBasket;
+?>
+
 <?php echo $this->doctype(); ?>
 
 <html lang="en">
@@ -38,6 +42,9 @@
                 <div class="siteTitle"><h2><?=$this->headTitle()->rendertitle(); ?></h2></div>
                 <div class="auth">
                     <?php
+                    $basket = new ShopBasket();
+                    $basket->showBasket();
+
                     $auth = new AuthenticationService();
                     if ($auth->getIdentity()) {
                         echo '<div class="login">';
@@ -54,6 +61,10 @@
                     ?>
                 </div>
             </div>
+            <?php
+//                $basket = new ShopBasket();
+//                $basket->showBasket();
+            ?>
             <?php echo $this->content; ?>
         </div> <!-- /container -->
     </body>

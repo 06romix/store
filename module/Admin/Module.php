@@ -57,8 +57,8 @@ class Module
     $action = $matches->getParam('action');
     $controller = $matches->getParam('controller');
 
-    // Blank page for JS in delete action
-    if (0 === strpos($action, 'delete', 0)) {
+    // Blank page for JS
+    if (in_array($action, array('delete', 'updateBasket'), 0)) {
       $viewModel = $e->getViewModel();
       $viewModel->setTemplate('layout/blank');
       return;

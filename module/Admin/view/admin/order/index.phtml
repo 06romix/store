@@ -3,9 +3,10 @@
   <table>
     <tr>
       <th>Детальна інформація</th>
-      <th>Номер замовлення</th>
+      <th>№</th>
       <th>Замовник</th>
-      <th>Назва товару</th>
+      <th>Сума замовлення</th>
+      <th>Дата замовлення</th>
     </tr>
     <?php
     foreach ($this->orders AS $order)
@@ -14,8 +15,9 @@
       echo '<td><a href="/admin/order/view/' . $order['order_id'] . '/">Переглянути</a></td>';
       echo '<td>' . $order['order_id'] . '</td>';
       echo '<td>' . $order['user_name'] . '</td>';
-      echo '<td>' . $order['product_name'] . '</td>';
-      echo '</td>';
+      echo '<td>' . $order['order_amount'] . '</td>';
+      echo '<td>' . $order['order_date'] . '</td>';
+      echo '</tr>';
     }
     ?>
   </table>

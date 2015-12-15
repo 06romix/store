@@ -51,11 +51,18 @@ class Module
       // not a controller from this module
       return;
     }
-    // IF NEED CHECK CONTROLLER
 
     $matches    = $e->getRouteMatch();
     $controller = $matches->getParam('controller');
-//    var_dump($controller,__NAMESPACE__);
+    $action = $matches->getParam('action');
+
+    // Blank page for JS
+    if ($action == 'updateBasket') {
+      $viewModel = $e->getViewModel();
+      $viewModel->setTemplate('layout/blank');
+      return;
+    }
+
     if (0 === strpos(__NAMESPACE__, 'Store', 0)){
       // Set the layout template
       $viewModel = $e->getViewModel();

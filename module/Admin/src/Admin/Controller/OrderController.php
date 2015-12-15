@@ -12,8 +12,7 @@ class OrderController extends AbstractActionController
 
   public function indexAction()
   {
-
-    return new ViewModel(array( 'orders' => Order::getOrder() ));
+    return new ViewModel(array( 'orders' => Order::getOrderList() ));
   }
 
   public function viewAction()

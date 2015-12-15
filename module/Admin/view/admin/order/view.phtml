@@ -2,20 +2,29 @@
 <div id="admin" class="content">
   <table>
     <tr>
+      <th>№</th>
+      <th>Замовник</th>
+      <th>Сума замовлення</th>
+      <th>Дата замовлення</th>
+    </tr>
+    <tr>
+      <td><?=$this->order[0]['order_id']?></td>
+      <td><?=$this->order[0]['user_name']?></td>
+      <td><?=$this->order[0]['order_amount']?></td>
+      <td><?=$this->order[0]['order_date']?></td>
+    </tr>
+  </table>
+
+  <?php foreach($this->order AS $order): ?>
+  <table>
+    <tr>
       <td>Товар</td>
-      <td><a href="/show/<?=$this->order['product_id']?>/"><?=$this->order['product_name']?></a></td>
+      <td><a href="/show/<?=$order['product_id']?>/"><?=$order['product_name']?></a></td>
     </tr>
     <tr>
       <td>Кількість</td>
-      <td><?=$this->order['order_quantity']?></td>
-    </tr>
-    <tr>
-      <td>Дата замовлення</td>
-      <td><?=$this->order['order_date']?></td>
-    </tr>
-    <tr>
-      <td>Замовник</td>
-      <td><a href="/admin/user/view/<?=$this->order['user_id']?>/"><?=$this->order['user_name']?></a></td>
+      <td><?=$order['op_quantity']?></td>
     </tr>
   </table>
+  <?php endforeach?>
 </div>

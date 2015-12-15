@@ -18,34 +18,51 @@ class Order
   }
 
   /**
+   * @return array
+   */
+
+  public static function getOrderList()
+  {
+    $sql = "SELECT
+              order_id,
+              order_amount,
+              order_date,
+              order_user_id,
+              user_name
+            FROM
+              orders
+            LEFT JOIN
+              users ON order_user_id = user_id";
+
+    return DbFunctions::sql($sql);
+  }
+
+  /**
    * @param int $id
    * @return array
    */
 
-  public static function getOrder($id = 0)
+  public static function getOrder($id)
   {
     $sql = "SELECT
               order_id,
-              order_product_id,
-              price_product,
-              order_user_id,
-              order_quantity,
+              order_amount,
               order_date,
-              user_id,
+              order_user_id,
               user_name,
+              op_quantity,
               product_id,
               product_name
             FROM
               orders
-            LEFT JOIN
+              LEFT JOIN
               users ON order_user_id = user_id
-            LEFT JOIN
-              products ON order_product_id = product_id";
-    if ($id !== 0)
-    {
-      $sql .= ' WHERE order_id = ' . $id;
-      return DbFunctions::sql($sql)[0];
-    }
+              LEFT JOIN
+              ordered_products ON op_order_id = order_id
+              LEFT JOIN
+              products ON op_product_id = product_id
+               WHERE order_id = " . $id;
+
     return DbFunctions::sql($sql);
   }
 

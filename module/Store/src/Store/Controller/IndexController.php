@@ -9,6 +9,7 @@ use Zend\View\Model\ViewModel;
 use Store\Entity\Order;
 use Store\Entity\Product;
 use Store\Form\OrderForm;
+use Store\Basket\ShopBasket;
 class IndexController extends AbstractActionController
 {
   public function indexAction()
@@ -32,7 +33,7 @@ class IndexController extends AbstractActionController
 
     $navigation = ($limit < Product::getCount()) ? Product::getCount(): false;
     return new ViewModel(array(
-      'products'    => Product::getAllByPage(array('product_id', 'product_name', 'product_price'), $sort, $limit, $id),
+      'products'    => Product::getProduct(0, $sort, $limit, $id),
       'userRole'    => $userRole,
       'limit'       => $limit,
       'sort'        => $sort,
@@ -42,6 +43,7 @@ class IndexController extends AbstractActionController
     ));
 
   }
+
 
   public function configAction()
   {
@@ -55,6 +57,7 @@ class IndexController extends AbstractActionController
     return new ViewModel();
   }
 
+
   public function showAction()
   {
     $auth = new AuthenticationService();
@@ -66,6 +69,25 @@ class IndexController extends AbstractActionController
     $status = $message = '';
     $id = $this->params()->fromRoute('id', 0);
 
+    //show form
+    return new ViewModel(array(
+      'product' => Product::getProduct($id),
+      'form' => $form,
+      'id' => $id,
+    ));
+  }
+
+
+  public function purchaseAction()
+  {
+    $auth = new AuthenticationService();
+    //if you guest - go to product list
+    if (!$auth->getIdentity()) return $this->redirect()->toRoute('store');
+
+    //initialization
+    $form = new OrderForm();
+    $status = $message = '';
+
     //check request if not Post show form on view
     $request = $this->getRequest();
     if($request->isPost()){
@@ -73,13 +95,13 @@ class IndexController extends AbstractActionController
       //validation and save
       $form->setData($request->getPost());
       if ($form->isValid()){
-        $order = new Order();
-        $order->exchangeArray($form->getData());
-        $product = Product::getOne($id);
-        $order->setProductId($product['product_id']);
-        $order->setProductPrice($product['product_price']);
-        $order->setUserId($auth->getIdentity());
-        $order->save();
+//        $order = new Order();
+//        $order->exchangeArray($form->getData());
+//        $product = Product::getProduct($id);
+//        $order->setProductId($product['product_id']);
+//        $order->setProductPrice($product['product_price']);
+//        $order->setUserId($auth->getIdentity());
+//        $order->save();
 
         $status = 'success';
         $message = 'Замовлення здійснено';
@@ -96,12 +118,15 @@ class IndexController extends AbstractActionController
         ->addMessage($message);
       return $this->redirect()->refresh();
     }
+    return 1;
+  }
 
-    //show form
-    return new ViewModel(array(
-      'product' => Product::getOne($id),
-      'form' => $form,
-      'id' => $id,
-    ));
+  public function updateBasketAction()
+  {
+    $request = $this->getRequest();
+    if ($request->isPost()){
+      echo json_encode( ShopBasket::getUpdatedProducts() );
+    }
+    return true;
   }
 }

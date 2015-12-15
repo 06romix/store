@@ -14,9 +14,6 @@ function deleteProduct(id, name)
 
 
 
-
-
-
 function showMessage(data)
 {
   var div = '';

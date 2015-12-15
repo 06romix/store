@@ -48,6 +48,7 @@
     display: inline-block;
 }
 
+/*------------ PRODUCT -------------*/
 .product {
     margin: 0;
     padding: 0.5em 1em;
@@ -156,7 +157,7 @@ label[generated=true] {
     display: inline-block;
 }
 
-.purchaseButton input[type=submit] {
+.purchaseButton button {
     width: auto;
     margin: 0 1px;
     font-size: 16px;
@@ -176,3 +177,169 @@ label[generated=true] {
         text-align: center;
     }
 }
+/*------------ PRODUCT -------------*/
+
+/*------------ BASKET -------------*/
+
+/*.basket {*/
+    /*position: absolute;*/
+    /*right: 5px;*/
+    /*top: 100px;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*background-color: #fefefe;*/
+    /*border: 1px solid #dddddd;*/
+    /*border-radius: 2px;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*text-align: left;*/
+    /*z-index: 5;*/
+/*}*/
+
+.basket {
+    position: relative;
+    float: left;
+    margin-top: -14px;
+    padding: 0;
+    background-color: #fefefe;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
+    width: 48px;
+    height: 48px;
+    text-align: left;
+    z-index: 5;
+}
+
+.count {
+    display: block;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    margin: 0;
+    padding: 0;
+    height: 26px;
+    width: 26px;
+    line-height: 26px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    background-color: #cd1b00;
+}
+
+.basket div[name='basket'] {
+    display: none;
+}
+
+.basketTitle {
+    padding-top: 5px;
+    padding-bottom: 0;
+    font-size: 18px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: #5fbd33;
+    margin: 0;
+}
+
+.basketOrderButton  {
+    padding-top: 2px;
+    padding-bottom: 5px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: #5fbd33;
+    margin: 0;
+}
+
+.basketOrderButton button {
+    width: auto;
+    margin: 0 1px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 0.1em 0.8em;
+    border: 1px solid #5fbd33;
+    border-radius: 3px;
+    background-color: #5fbd33;
+}
+
+.basketProductList {
+    display: block;
+}
+
+.basketProductList button {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    margin: 3px;
+    border: none;
+    outline: none;
+}
+
+.basketProductList span[name='qua'] {
+    text-align: center;
+    width: 30px;
+    height: 25px;
+    line-height: 30px;
+    display: inline-block;
+    color: #cd1b00;
+    float: left;
+}
+
+.basketProductList span[name='product'] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    line-height: 30px;
+    display: inline-block;
+    height: 25px;
+    width: 300px;
+}
+
+.basket ul {
+    padding: 0;
+    margin: 2px 0;
+}
+
+.basket li {
+    width: 400px;
+    list-style: none;
+    display: block;
+    border-top: 1px solid #fefefe;
+    border-bottom: 1px solid #fefefe;
+    margin: 0 2px;
+    padding: 5px 5px;
+}
+
+.basket li:hover {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.basket:hover div[name='basket'] {
+    display: block;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background-color: #fefefe;
+    border: 1px solid #dddddd;
+}
+
+@media screen and (max-width: 650px)
+{
+    .basket {
+        width: 100%;
+        position: inherit;
+        text-align: center;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        margin: 2px 0 0 0;
+    }
+}
+
+/*------------ BASKET -------------*/
