@@ -10,10 +10,13 @@ use Store\Entity\Order;
 use Store\Entity\Product;
 use Store\Form\OrderForm;
 use Store\Basket\ShopBasket;
+use Store\Test\MyPHPUnit;
 class IndexController extends AbstractActionController
 {
   public function indexAction()
   {
+    $phpUnit = new MyPHPUnit();
+    print_r($phpUnit->testSortCookie());
     session_start();
     if (!isset($_SESSION['sort'])) $_SESSION['sort'] = null;
     if (!isset($_SESSION['limit'])) $_SESSION['limit'] = 5;

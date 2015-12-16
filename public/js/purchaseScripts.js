@@ -15,9 +15,10 @@ function addProductToBasket(id)
 
     } else {
       var product = JSON.parse(getCookie('basket[' + id + ']'));
-      product.quantity += +quantity;
-      if (checkQuantity(product.quantity)) {
-        setCookie('basket[' + id + ']', JSON.stringify({id: id, quantity: product.quantity}), {path: '/'});
+      var newQuantity = product.quantity;
+      newQuantity = +newQuantity + +quantity;
+      if (checkQuantity(newQuantity)) {
+        setCookie('basket[' + id + ']', JSON.stringify({id: id, quantity: newQuantity}), {path: '/'});
         updateBasket(quantity);
         showMessage(data);
       }
@@ -30,11 +31,15 @@ function deleteProductFromBasket(id, qua)
   if (getCookie('basket[' + id + ']') == undefined) return false;
   var product = JSON.parse(getCookie('basket[' + id + ']'));
   if (+qua < +product.quantity) {
-    setCookie('basket[' + id + ']', JSON.stringify({id: id, quantity: +product.quantity - +qua}), {path: '/'});
+    var quantity = +product.quantity - +qua;
+    setCookie('basket[' + id + ']', JSON.stringify({id: id, quantity: quantity}), {path: '/'});
+    updateBasket(-qua);
     return true;
   } else {
+
     if (+qua == +product.quantity) {
       deleteCookie('basket[' + id + ']');
+      updateBasket(-qua);
       return true;
     }
     return false;
@@ -74,17 +79,20 @@ function makeFormMessage()
 
 function showMessage(data)
 {
-  var div = '';
-  if (data.status == 'success'){
-    div = '<div class="array alert-dismissable alert-success">'
-      + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'
-      + '<ul><li>' + data.message + '</li></ul></div>';
-  } else {
-    div = '<div class="array alert-dismissable alert-danger">'
-      + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'
-      + '<ul><li>' + data.message + '</li></ul></div>';
-  }
-  $(div).insertAfter('.filtersLine')
+  var newDiv = $('<div class="array alert-dismissable alert-success"></div>');
+  var content = (data.status == 'success')
+                   ? '<ul><li>' + data.message + '</li></ul>'
+                   : '<ul><li>' + data.message + '</li></ul>';
+
+  newDiv.html(content);
+
+  newDiv.insertAfter('.filtersLine');
+
+  setTimeout(function(){
+    newDiv.animate({opacity: 0}, 1000, function(){
+      newDiv.animate({'margin-top': '-20px'}, 500, function(){newDiv.remove();});
+    });
+  }, 500);
 }
 
 // возвращает cookie с именем name, если есть, если нет, то undefined
@@ -129,6 +137,7 @@ function setCookie(name, value, options) {
 // удаляет cookie с именем name
 function deleteCookie(name) {
   setCookie(name, "", {
-    expires: -1
+    expires: -1,
+    path: '/'
   })
 }

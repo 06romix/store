@@ -113,10 +113,15 @@ class AuthController extends AbstractActionController
 
   public function logoutAction()
   {
-    $auth = new AuthenticationService();
-    $auth->clearIdentity();
+    (new AuthenticationService())->clearIdentity();
     session_unset();
     session_destroy();
+    if (isset($_COOKIE['basket'])){
+      foreach($_COOKIE['basket'] AS $name => $val)
+      {
+        setcookie('basket[' . $name . ']', '', time() - 3600, '/');
+      }
+    }
     return $this->redirect()->toRoute('store');
   }
 }

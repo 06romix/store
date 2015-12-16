@@ -24,10 +24,13 @@ class ShopBasket
   private function getProducts()
   {
     if ($this->products) {
+      ksort($this->products);
       foreach ($this->products AS $id => $qua){
         echo '<li><span name="qua">' . $qua . 'x</span> '
           . '<span name="product">' . Product::getProduct($id)['product_name'] . '</span>'
-          . '<button><img src="/img/delete.png" alt="X"></button>'
+          . '<button onclick="deleteProductFromBasket(' . $id . ', 1)">'
+          . '<img src="/img/delete.png" alt="X">'
+          . '</button>'
           . '</li>';
       }
     } else {
@@ -39,12 +42,16 @@ class ShopBasket
   {
     $list = '';
     if (isset($_COOKIE['basket'])) {
-      foreach ($_COOKIE['basket'] AS $product)
+      $products = $_COOKIE['basket'];
+      ksort($products);
+      foreach ($products AS $product)
       {
         $product = json_decode($product);
         $list .= '<li><span name="qua">' . $product->quantity . 'x</span> '
               . '<span name="product">' . Product::getProduct($product->id)['product_name'] . '</span>'
-              . '<button><img src="/img/delete.png" alt="X"></button>'
+              . '<button onclick="deleteProductFromBasket(' . $product->id . ', 1)">'
+              . '<img src="/img/delete.png" alt="X">'
+              . '</button>'
               . '</li>';
       }
     } else {
@@ -74,5 +81,10 @@ class ShopBasket
       }
     }
     return $count;
+  }
+
+  public function sortProducts($products)
+  {
+    ksort($products);
   }
 }

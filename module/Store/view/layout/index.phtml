@@ -42,11 +42,9 @@ use Store\Basket\ShopBasket;
                 <div class="siteTitle"><h2><?=$this->headTitle()->rendertitle(); ?></h2></div>
                 <div class="auth">
                     <?php
-                    $basket = new ShopBasket();
-                    $basket->showBasket();
-
                     $auth = new AuthenticationService();
                     if ($auth->getIdentity()) {
+                        (new ShopBasket())->showBasket();
                         echo '<div class="login">';
                             echo User::getUserLogin($auth->getIdentity());
                         echo '</div>';
@@ -66,10 +64,6 @@ use Store\Basket\ShopBasket;
                     ?>
                 </div>
             </div>
-            <?php
-//                $basket = new ShopBasket();
-//                $basket->showBasket();
-            ?>
             <?php echo $this->content; ?>
         </div> <!-- /container -->
     </body>

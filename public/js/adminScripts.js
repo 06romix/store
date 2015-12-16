@@ -16,17 +16,20 @@ function deleteProduct(id, name)
 
 function showMessage(data)
 {
-  var div = '';
-  if (data.status == 'success'){
-    div = '<div class="array alert-dismissable alert-success">'
-      + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'
-      + '<ul><li>' + data.message + '</li></ul></div>';
-  } else {
-    div = '<div class="array alert-dismissable alert-danger">'
-      + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'
-      + '<ul><li>' + data.message + '</li></ul></div>';
-  }
-  $(div).insertAfter('#addProduct')
+  var newDiv = $('<div class="array alert-dismissable alert-success"></div>');
+  var content = (data.status == 'success')
+    ? '<ul><li>' + data.message + '</li></ul>'
+    : '<ul><li>' + data.message + '</li></ul>';
+
+  newDiv.html(content);
+
+  newDiv.insertAfter('.filtersLine');
+
+  setTimeout(function(){
+    newDiv.animate({opacity: 0}, 1000, function(){
+      newDiv.animate({'margin-top': '-20px'}, 500, function(){newDiv.remove();});
+    });
+  }, 500);
 }
 
 function removeEntity(id)
