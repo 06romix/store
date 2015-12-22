@@ -22,6 +22,10 @@ return array(
                 'Auth' => array(
                     'Auth\Controller\Auth',
                 ),
+                'Api' => array(
+                    'Api\Controller\Index',
+                    'test'
+                ),
             ),
         ),
         'allow' => array(
@@ -30,6 +34,13 @@ return array(
               'all' => 'guest',
             ),
             'Store\Controller\Index' => array(
+              'all' => 'guest',
+            ),
+            // Api Controller
+            'Api\Controller\Index' => array(
+              'all' => 'guest',
+            ),
+            'test' => array(
               'all' => 'guest',
             ),
             // Authorization Controller

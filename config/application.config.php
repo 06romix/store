@@ -12,6 +12,7 @@ return array(
         'Store',
         'Auth',
         'Admin',
+        'Api',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

@@ -18,6 +18,11 @@ class User
     if ($id != 0) $this->id = (int) $id;
   }
 
+  public static function getUser($id = 0)
+  {
+    return DbFunctions::getEntity('user', $id);
+  }
+
   public static function getUserLogin($id)
   {
     return DbFunctions::getEntity('user', $id)['user_name'];

@@ -1,0 +1,21 @@
+<?php $this->headTitle('Api'); ?>
+<div class="row testApi">
+  Products
+  <button class="delete" onclick="methodGet('products')">get</button>
+  <button class="delete" onclick="methodGet('products', 40)">get40</button>
+  <button class="delete" onclick="methodGet('products', 42)">get42</button>
+
+  <button class="delete" onclick="methodPost()">post</button>
+  <button class="delete" onclick="methodPut()">put</button>
+  <button class="delete" onclick="methodDelete()">delete</button>
+</div>
+<div class="row testApi">
+  Users
+  <button class="delete" onclick="methodGet('users')">get</button>
+  <button class="delete" onclick="methodGet('users', 1)">get 1</button>
+  <button class="delete" onclick="methodGet('users', 3)">get 3</button>
+
+  <button class="delete" onclick="methodPost()">post</button>
+  <button class="delete" onclick="methodPut()">put</button>
+  <button class="delete" onclick="methodDelete()">delete</button>
+</div>

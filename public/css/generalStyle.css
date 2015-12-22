@@ -152,3 +152,21 @@ img {
     .container .cols.col-11 { width: 91.666666666%; }
     .container .cols.col-12 { width: 100%; }
 }
+
+.testApi {
+padding: 5px;
+}
+
+.testApi button {
+    background: #E62117;
+    color: #eee;
+
+    line-height: 26px;
+    vertical-align: baseline;
+    padding: 1px 8px;
+    height: 30px;
+    margin: 0;
+    display: inline-block;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+}
