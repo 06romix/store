@@ -3,8 +3,8 @@ namespace Auth\Controller;
 
 
 use Auth\Form\MyRegistrationFilter;
+use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Zend\Form\Element;
 use Zend\Db\Adapter\Driver;
 use Zend\Authentication\AuthenticationService;
@@ -19,13 +19,15 @@ class AuthController extends AbstractActionController
   {
     $form = new AuthForm;
     $auth = new AuthenticationService();
-    $status = $message = '';
 
     if ($auth->hasIdentity()) {
       // Identity exists
       return $this->redirect()->toRoute('store');
     }
-
+    
+    /**
+     * @var $request Request
+     */
     $request = $this->getRequest();
     if ($request->isPost()){
       $form->setData($request->getPost());
@@ -39,7 +41,7 @@ class AuthController extends AbstractActionController
         if ($result->isValid()){
           return $this->redirect()->toRoute('store');
         } else {
-         $status = 'error';
+          $status = 'error';
           $message = 'Невірний логін або пароль';
             $this->flashMessenger()
               ->setNamespace($status)
@@ -62,6 +64,9 @@ class AuthController extends AbstractActionController
       return $this->redirect()->toRoute('store');
     }
 
+    /**
+     * @var $request Request
+     */
     $request = $this->getRequest();
     if ($request->isPost()){
 

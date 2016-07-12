@@ -2,6 +2,7 @@
 namespace Store\Controller;
 
 
+use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Authentication\AuthenticationService;
 use Zend\View\Model\ViewModel;
@@ -36,7 +37,7 @@ class IndexController extends AbstractActionController
 
     $navigation = ($limit < Product::getCount()) ? Product::getCount(): false;
     return new ViewModel(array(
-      'products'    => Product::getProduct(0, $sort, $limit, $id),
+      'products'    => Product::getProduct(0, $sort, $limit),
       'userRole'    => $userRole,
       'limit'       => $limit,
       'sort'        => $sort,
@@ -51,6 +52,9 @@ class IndexController extends AbstractActionController
   public function configAction()
   {
     $request = $this->getRequest();
+    /**
+     * @var $request Request
+     */
     if ($request->isPost()){
       $config = $request->getPost();
       session_start();
@@ -93,6 +97,9 @@ class IndexController extends AbstractActionController
 
     //check request if not Post show form on view
     $request = $this->getRequest();
+    /**
+     * @var $request Request
+     */
     if($request->isPost()){
 
       //validation and save
@@ -127,6 +134,9 @@ class IndexController extends AbstractActionController
   public function updateBasketAction()
   {
     $request = $this->getRequest();
+    /**
+     * @var $request Request
+     */
     if ($request->isPost()){
       echo json_encode( ShopBasket::getUpdatedProducts() );
     }

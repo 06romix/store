@@ -1,7 +1,7 @@
 <?php $this->headTitle('Продукти'); ?>
   <div id="admin" class="content">
     <div id="addProduct">
-      <a href="/admin/product/add/">+ Додати продукт</a>
+      <a href="<?=FOLDER_PATH;?>/admin/product/add/">+ Додати продукт</a>
     </div>
 
     <?php
@@ -33,7 +33,7 @@
       echo '<td>' . $product['product_name'] . '</td>';
       echo '<td>' . $product['product_price'] . '</td>';
       echo '<td>' . $product['product_quantity'] . '</td>';
-      echo '<td><a href="/admin/product/edit/' . $product['product_id'] . '/" class="edit">Edit</a>';
+      echo '<td><a href="' . FOLDER_PATH . '/admin/product/edit/' . $product['product_id'] . '/" class="edit">Edit</a>';
       $option = $product['product_id'] . ", '" . $product['product_name'] . "'";
       echo ' <button class="delete" onclick="deleteProduct(' . $option . ')">';
       echo 'Delete';

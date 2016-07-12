@@ -1,7 +1,7 @@
 <?php
 namespace Store;
 
-use Zend\Authentication\Adapter\AdapterInterface;
+use Zend\Config\Reader\Json;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
@@ -11,6 +11,9 @@ use Store\Entity\User;
 
 class Module
 {
+  /**
+   * @param MvcEvent $e
+   */
   public function onBootstrap($e)
   {
     $e->getApplication()->getServiceManager()->get('translator');
@@ -18,6 +21,7 @@ class Module
     $moduleRouteListener = new ModuleRouteListener();
     $moduleRouteListener->attach($eventManager);
 
+    define('FOLDER_PATH', (new Json())->fromFile('config.json')['path']);
     $app = $e->getParam('application');
     $app->getEventManager()->attach('dispatch', array($this, 'setLayout'), -90);
   }
@@ -54,7 +58,7 @@ class Module
 
     $matches    = $e->getRouteMatch();
     $controller = $matches->getParam('controller');
-    $action = $matches->getParam('action');
+    $action     = $matches->getParam('action');
 
     // Blank page for JS
     if ($action == 'updateBasket') {

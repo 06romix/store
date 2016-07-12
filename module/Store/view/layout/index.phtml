@@ -15,14 +15,20 @@ use Store\Basket\ShopBasket;
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
-
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+        <?php echo $this->headLink(
+                  array(
+                      'rel' => 'shortcut icon',
+                      'type' => 'image/vnd.microsoft.icon',
+                      'href' => $this->basePath() . '/img/favicon.ico'
+                  )
+              )
                         ->prependStylesheet($this->basePath('css/storeStyle.css'))
                         ->prependStylesheet($this->basePath('css/generalStyle.css'))
                         ->prependStylesheet($this->basePath('css/storeStyle.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'));
+        ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -31,9 +37,10 @@ use Store\Basket\ShopBasket;
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery.min.js'))
             ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
     </head>
     <body>
         <div class="container">
@@ -50,15 +57,16 @@ use Store\Basket\ShopBasket;
                         echo '</div>';
                         if (User::getUserRole($auth->getIdentity()) == 'admin') {
                             echo '<div class="loginButton">';
-                            echo '<a href="/admin/">Admin-panel</a>';
+                            echo '<a href="' . FOLDER_PATH . '/admin/">Admin-panel</a>';
                             echo '</div>';
                         }
                         echo '<div class="loginButton">';
-                            echo '<a href="/auth/logout/">Вихід</a>';
+                            echo '<a href="' . FOLDER_PATH . '/auth/logout/">Вихід</a>';
                         echo '</div>';
                     } else {
                         echo '<div class="loginButton">';
-                            echo '<a href="/auth/login/">Ввійти</a> | <a href="/auth/registration/">Реєстрація</a>';
+                            echo '<a href="' . FOLDER_PATH . '/auth/login/">Ввійти</a> | ';
+                            echo '<a href="' . FOLDER_PATH . '/auth/registration/">Реєстрація</a>';
                         echo '</div>';
                     }
                     ?>

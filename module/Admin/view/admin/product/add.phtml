@@ -1,8 +1,15 @@
 <?php
+$this->headTitle('Продукти');
 
+/**
+ * @var $form \Zend\Form\Form
+ */
 $form->setAttribute('action', $this->url('admin/product', array('action' => 'add')));
 $form->prepare();
 
+/**
+ * @var $element \Zend\Form\Element
+ */
 echo $this->form()->openTag($form);
   echo '<fieldset><legend>Додати продукт</legend>';
   foreach ($form as $element){

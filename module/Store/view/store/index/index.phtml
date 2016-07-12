@@ -30,11 +30,13 @@
         if ($page == $this->currentPage){
           echo $page;
         } else {
-          echo ' <a href="/index/' . $page . '/">' . $page . '</a> ';
+          echo ' <a href="' . FOLDER_PATH . '/index/' . $page . '/">' . $page . '</a> ';
         }
         $page++;
       }
-      echo ($this->currentPage == $this->pageCount) ? ' -->' : '<a href="/index/' . ($this->currentPage + 1) . '/"> --></a>';
+      echo ($this->currentPage == $this->pageCount)
+        ? ' -->'
+        : '<a href="' . FOLDER_PATH . '/index/' . ($this->currentPage + 1) . '/"> --></a>';
       echo '</div>';
     }?>
 
@@ -74,7 +76,7 @@ echo $flash->render('success', array('array', 'alert-dismissable', 'alert-succes
     <?php foreach($this->products AS $product):?>
       <div class="cols col-3">
         <div class="product">
-          <a href="/show/<?=$product['product_id']?>/">
+          <a href="<?=FOLDER_PATH;?>/show/<?=$product['product_id'];?>/">
             <h5><?=$product['product_name'];?></h5>
           </a>
           Price: <span class="price">$<?=$product['product_price'];?></span>

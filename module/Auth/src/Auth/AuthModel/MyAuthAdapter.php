@@ -11,6 +11,8 @@ use Zend\Permissions\Acl\AclInterface;
 
 class MyAuthAdapter implements AdapterInterface
 {
+  protected $username = null;
+  protected $password = null;
   /**
    * Sets username and password for authentication
    * @param $userName
